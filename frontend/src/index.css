@@ -1,0 +1,42 @@
+@import "@fontsource-variable/geist";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --cor-primaria: #2c1ef3;
+}
+
+@layer base {
+  html {
+    font-family: 'Geist Variable', sans-serif;
+  }
+
+  body {
+    @apply bg-gray-50 text-gray-800;
+  }
+}
+
+@layer components {
+  .nav-pill {
+    @apply px-4 py-2 text-sm rounded-full 
+           text-gray-600 
+           hover:text-blue-600 
+           hover:bg-white 
+           transition;
+  }
+
+  .nav-container {
+    @apply w-full flex items-center justify-between gap-6 
+           border border-gray-200 
+           shadow-xl 
+           rounded-2xl 
+           bg-white 
+           p-3;
+  }
+
+  .nav-desktop {
+    @apply hidden lg:flex gap-1 bg-gray-100 p-1 rounded-full;
+  }
+}
