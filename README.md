@@ -1,37 +1,28 @@
-```markdown
 # 🧪 QuimiCalc
 
-Sistema **web e mobile** para **cálculo de dosagem química**, com cadastro de produtos e cálculos em **mg/L** e **mL**, desenvolvido com arquitetura moderna **React Native + Node + PostgreSQL**.
-
+Sistema web para **cálculo de dosagem química**, com cadastro de produtos e cálculos em **mg/L** e **mL**, desenvolvido com arquitetura moderna **React + Node + PostgreSQL**.
 ---
-
 # 🚀 Funcionalidades
-
 * Cadastro de produtos químicos
 * Edição e exclusão de produtos
-* Listagem de produtos
+* Listagem com paginação
 * Cálculo de dosagem em mg/L
 * Cálculo de dosagem em mL
 * Validação de formulários
 * Tratamento de erros da API
+* Layout responsivo (mobile e desktop)
 * Feedback com toast
-* Modal de confirmação personalizado
-* Suporte a densidade e concentração final
-* Navegação entre telas (Stack Navigator)
-
+* Modal de confirmação
 ---
-
 # 🛠️ Tecnologias
 
-## Mobile
-* React Native
+## Frontend
+* React
 * TypeScript
-* Expo
-* React Navigation (Stack)
-* @react-native-picker/picker
-* react-native-toast-message
-* react-native-safe-area-context
-* Axios
+* React Router DOM
+* Tailwind CSS
+* React Hot Toast
+* Heroicons
 
 ## Backend
 * Node.js
@@ -39,111 +30,86 @@ Sistema **web e mobile** para **cálculo de dosagem química**, com cadastro de 
 * TypeScript
 * PostgreSQL
 * Arquitetura em camadas
-* CORS configurado para web e mobile
-
 ---
 
 # 📁 Estrutura do Projeto
-
-## Mobile
+## Frontend
 ```
-mobile/
- └── src/
-      ├── components/
-      ├── features/
-      │   ├── home/
-      │   │   └── screens/
-      │   ├── produtos/
-      │   │   ├── screens/
-      │   │   ├── services/
-      │   │   └── types/
-      │   └── calculadora/
-      │       ├── screens/
-      │       ├── services/
-      │       └── types/
-      ├── navigation/
-      ├── services/
-      └── utils/
+src/
+ ├── api
+ ├── components
+ │   ├── layout
+ │   └── ui
+ ├── pages
+ │   ├── home
+ │   ├── produtos
+ │   └── calculadora
+ ├── services
+ ├── types
+ ├── routes
+ └── App.tsx
 ```
-
 ## Backend
 ```
-backend-api/
- └── src/
-      ├── config/
-      ├── controllers/
-      ├── services/
-      ├── repository/
-      ├── routes/
-      ├── dto/
-      ├── middlewares/
-      └── server.ts
+src/
+ ├── config
+ ├── controllers
+ ├── services
+ ├── repository
+ ├── routes
+ ├── dto
+ └── server.ts
 ```
-
 ---
-
 # ⚙️ Instalação
-
 ## Clonar repositório
+
 ```bash
-git clone https://github.com/dhonataborges/Projeto-QuimiClac-Web-Mobile.git
+git clone https://github.com/seu-usuario/quimicalc.git
 ```
-
 ---
-
 # ▶️ Executar Backend
-
 ```bash
-cd backend-api
+cd backend
 npm install
 npm run dev
 ```
-
 Servidor:
 ```
 http://localhost:3000
 ```
-
 ---
-
-# ▶️ Executar Mobile
-
+# ▶️ Executar Frontend
 ```bash
-cd mobile
+cd frontend
 npm install
-npx expo start --clear
+npm run dev
 ```
-
-Emulador web:
+Aplicação:
 ```
-http://localhost:8081
+http://localhost:5173
 ```
-
 ---
 
 # 🔌 Endpoints API
 
 ## Produtos
 
-| Método | Rota              | Descrição         |
-| ------ | ----------------- | ----------------- |
-| GET    | /api/produtos     | Listar produtos   |
-| GET    | /api/produtos/:id | Buscar por id     |
-| POST   | /api/produtos     | Criar produto     |
-| PUT    | /api/produtos/:id | Atualizar produto |
-| DELETE | /api/produtos/:id | Remover produto   |
-
+| Método | Rota          | Descrição         |
+| ------ | ------------- | ----------------- |
+| GET    | /produtos     | Listar produtos   |
+| GET    | /produtos/:id | Buscar por id     |
+| POST   | /produtos     | Criar produto     |
+| PUT    | /produtos/:id | Atualizar produto |
+| DELETE | /produtos/:id | Remover produto   |
 ---
-
 ## Calculadora
-
-| Método | Rota                               | Descrição             |
-| ------ | ---------------------------------- | --------------------- |
-| POST   | /api/calculadoras/produto-ml       | Calcular dosagem mL   |
-| POST   | /api/calculadoras/produto-mg-litro | Calcular dosagem mg/L |
+| Método | Rota                           | Descrição             |
+| ------ | ------------------------------ | --------------------- |
+| POST   | /calculadoras/produto-ml       | Calcular dosagem mL   |
+| POST   | /calculadoras/produto-mg-litro | Calcular dosagem mg/L |
 
 ---
-
 # 📦 Exemplo Request
 
 ```json
@@ -156,7 +122,6 @@ http://localhost:8081
   "resultado": 0
 }
 ```
-
 ---
 
 # 📦 Exemplo Response
@@ -173,51 +138,57 @@ http://localhost:8081
 
 ```json
 {
-  "erro": "Produto não informado"
+  "mensagem": "Produto não informado"
 }
 ```
 
-Mobile captura automaticamente:
+Frontend captura automaticamente:
+
 ```ts
-Toast.show({ type: "error", text1: "Erro!", text2: error.message })
+toast.error(error.message)
 ```
 
 ---
 
 # 🧠 Arquitetura
 
-## Mobile
+## Frontend
+
 ```
-Screens → Services → API (Axios)
+Pages → Services → API
 ```
 
 ## Backend
+
 ```
 Routes → Controller → Service → Repository → Database
 ```
 
 ---
 
-# 🔒 Validações
+# 📱 Responsividade
 
-Frontend Mobile:
-* Campos obrigatórios
-* Validação manual por campo
-* Toast feedback visual
-* Modal de confirmação para exclusão
-
-Backend:
-* Validação DTO
-* Tratamento de erros
-* Status HTTP corretos
+* Mobile
+* Tablet
+* Desktop
+* Menu mobile
+* Tabela com scroll horizontal
 
 ---
 
-# 📱 Plataformas Suportadas
+# 🔒 Validações
 
-* Android (via Expo)
-* iOS (via Expo)
-* Web (via Expo Web / emulador browser)
+Frontend:
+
+* required
+* validação manual
+* toast feedback
+
+Backend:
+
+* validação DTO
+* tratamento de erros
+* status HTTP corretos
 
 ---
 
@@ -244,4 +215,3 @@ MIT
 * Gráficos
 * Favoritos
 * Logs de cálculo
-```
