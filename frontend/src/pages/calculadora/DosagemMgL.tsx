@@ -36,16 +36,6 @@ export default function Example() {
   // Resultado final exibido na tela
   const [resultado, setResultado] = useState<string>("");
 
-  // Objeto da calculadora (estrutura esperada pela API)
-  const [calculadora, setCalculadora] = useState<CalculadoraDTO>({
-    produto: {
-      idProduto: 0,
-    },
-    vazao: 0,
-    dosagem: 0,
-    resultado: 0,
-  });
-
   /**
    * useEffect executado apenas uma vez
    * quando o componente é carregado
@@ -93,8 +83,6 @@ export default function Example() {
       // Atualiza resultado formatado com 2 casas decimais
       setResultado(resultado.resultado.toFixed(2));
 
-      // Mensagem de sucesso
-      toast.success("Cálculo realizado com sucesso!");
     } catch (error: any) {
       // Mensagem de erro
       toast.error(error?.message || "Erro ao calcular");

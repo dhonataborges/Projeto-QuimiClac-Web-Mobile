@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
 import * as calculadoraService from "../services/calculadora.service";
-import { ProdutoDTO } from "../dto/produto.dto";
 import { CalculadoraDTO } from "../dto/calculadora.dto";
 
 /**

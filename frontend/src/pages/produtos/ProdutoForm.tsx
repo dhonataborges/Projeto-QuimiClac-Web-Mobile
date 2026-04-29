@@ -131,7 +131,7 @@ export default function Example() {
   async function salvar(e: React.FormEvent) {
     // evita reload
     e.preventDefault();
-    
+
     // quando NÃO possui densidade
     if (!possuiDensidade) {
       if (!produto.nome || !produto.concentracao || !produto.densidade) {
@@ -159,28 +159,30 @@ export default function Example() {
       } else {
         // MODO CADASTRO
         await criarProduto(produto);
-
+        limparFormulario();
         toast.success("Produto salvo com sucesso!");
-
-        // limpa objeto
-        setProduto({
-          idProduto: 0,
-          nome: "",
-          concentracao: 0,
-          densidade: 0,
-          concentracaoFinal: 0,
-        });
-
-        // limpa inputs
-        setConcentracaoTxt("");
-        setDensidadeTxt("");
-        setConcentracaoFinalTxt("");
 
         navigate("/produtos/cadastro");
       }
     } catch (error: any) {
       toast.error(error?.message || "Erro ao salvar");
     }
+  }
+
+  function limparFormulario() {
+    // limpa objeto
+    setProduto({
+      idProduto: 0,
+      nome: "",
+      concentracao: 0,
+      densidade: 0,
+      concentracaoFinal: 0,
+    });
+
+    // limpa inputs
+    setConcentracaoTxt("");
+    setDensidadeTxt("");
+    setConcentracaoFinalTxt("");
   }
 
   return (
@@ -251,50 +253,19 @@ export default function Example() {
                       checked={possuiDensidade === "nao"}
                       onChange={(e) => {
                         const valor = e.target.value;
-
                         setPossuiDensidade(valor);
-
-                        // Se não possuir densidade limpa campos
-                        if (valor === "nao") {
-                          setDensidadeTxt("");
-                          setConcentracaoTxt("");
-
                           setProduto((prev) => ({
                             ...prev,
                             densidade: 0,
                             concentracao: 0,
                           }));
-                        }
+                        
                       }}
                     />
                     Não
                   </label>
                 </div>
               </div>
-
-              {/* ================= CONCENTRAÇÃO ================= */}
-              {possuiDensidade === "sim" && (
-                <div className="sm:col-span-3">
-                  <input
-                    type="text"
-                    value={concentracaoTxt}
-                    onChange={(e) => {
-                      setConcentracaoTxt(e.target.value);
-
-                      const numero = Number(e.target.value.replace(",", "."));
-
-                      if (!isNaN(numero)) {
-                        setProduto({
-                          ...produto,
-                          concentracao: numero,
-                        });
-                      }
-                    }}
-                    placeholder="Concentração"
-                    className="w-full border border-gray-300 rounded-lg px-3 py-2"
-                  />
-                </div>
-              )}
 
               {/* ================= DENSIDADE ================= */}
               {possuiDensidade === "sim" && (
@@ -315,6 +286,30 @@ export default function Example() {
                       }
                     }}
                     placeholder="Densidade"
+                    className="w-full border border-gray-300 rounded-lg px-3 py-2"
+                  />
+                </div>
+              )}
+
+              {/* ================= CONCENTRAÇÃO ================= */}
+              {possuiDensidade === "sim" && (
+                <div className="sm:col-span-3">
+                  <input
+                    type="text"
+                    value={concentracaoTxt}
+                    onChange={(e) => {
+                      setConcentracaoTxt(e.target.value);
+
+                      const numero = Number(e.target.value.replace(",", "."));
+
+                      if (!isNaN(numero)) {
+                        setProduto({
+                          ...produto,
+                          concentracao: numero,
+                        });
+                      }
+                    }}
+                    placeholder="Concentração"
                     className="w-full border border-gray-300 rounded-lg px-3 py-2"
                   />
                 </div>

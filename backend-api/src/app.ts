@@ -6,7 +6,9 @@ import { errorMiddleware } from "../src/middlewares/errorMiddleware";
 const app = express();
 
 app.use(cors({
-  origin: "http://localhost:5173"
+  origin: '*',  // libera tudo enquanto estiver testando com ngrok
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'ngrok-skip-browser-warning']
 }));
 
 /**

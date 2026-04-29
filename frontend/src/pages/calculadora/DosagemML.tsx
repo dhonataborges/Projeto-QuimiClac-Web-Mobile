@@ -92,8 +92,6 @@ export default function Example() {
       // Atualiza resultado formatado com 2 casas decimais
       setResultado(resultado.resultado.toFixed(2));
 
-      // Exibe mensagem de sucesso
-      toast.success("Cálculo realizado com sucesso!");
     } catch (error: any) {
       // Exibe erro caso aconteça
       toast.error(error?.message || "Erro ao calcular");

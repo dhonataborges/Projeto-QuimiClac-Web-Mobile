@@ -131,9 +131,9 @@ export default function ProdutoLista() {
           {/* CABEÇALHO */}
           <thead>
             <tr className="text-left text-gray-900 text-sm font-medium bg-gray-50">
-              <th className="px-3 py-2">Nome</th>
-              <th className="px-3 py-2">Concentração</th>
+              <th className="px-3 py-2">Nome</th>              
               <th className="px-3 py-2">Densidade</th>
+              <th className="px-3 py-2">Concentração</th>
               <th className="px-3 py-2">Concentração Final</th>
               <th className="px-3 py-2 text-right">Ações</th>
             </tr>
@@ -149,11 +149,11 @@ export default function ProdutoLista() {
                 </td>
 
                 <td className="px-3 py-2">
-                  {p.concentracao}
-                </td>
-
-                <td className="px-3 py-2">
                   {p.densidade}
+                </td>
+                
+                <td className="px-3 py-2">
+                  {p.concentracao}
                 </td>
 
                 <td className="px-3 py-2">
