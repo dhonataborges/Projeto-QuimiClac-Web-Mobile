@@ -24,6 +24,13 @@ Sistema web para **cálculo de dosagem química**, com cadastro de produtos e c�
 * React Hot Toast
 * Heroicons
 
+### 📱 Mobile
+* React Native
+* Expo
+* TypeScript
+* React Navigation
+* Toast Message
+
 ## Backend
 * Node.js
 * Express
@@ -33,6 +40,26 @@ Sistema web para **cálculo de dosagem química**, com cadastro de produtos e c�
 ---
 
 # 📁 Estrutura do Projeto
+## Mobile
+```
+mobile/
+ └── src/
+      ├── components/
+      ├── navigation/
+      ├── services/
+      ├── utils/
+      └── features/
+           ├── home/
+           │    └── screens/
+           ├── produtos/
+           │    ├── screens/
+           │    ├── services/
+           │    └── types/
+           └── calculadora/
+                ├── screens/
+                ├── services/
+                └── types/
+```
 ## Frontend
 ```
 src/
@@ -90,7 +117,16 @@ Aplicação:
 http://localhost:5173
 ```
 ---
-
+# ▶️ Executar Mobile
+```bash
+cd mobile
+npm install
+npx expo start --clear
+```
+Expo Web:
+```
+http://localhost:8081
+```
 # 🔌 Endpoints API
 
 ## Produtos
